@@ -12,16 +12,28 @@ body{
     transform: rotate(180deg);
 }
 
+#profile-image{
+    position: absolute;
+    top: 3vh;
+    left: 65vw;
+    transform: translateX(100%);
+    transition: all 0.5s ease-in-out;
+}
 
 #contact-container{
     transition: all 1s cubic-bezier(0.64, 0.57, 0.67, 1.53);
 }
 
 #qr-container{
+
     transform: scale(0);
     transition: all 1s cubic-bezier(0.64, 0.57, 0.67, 1.53);
 }
-
+#qr-container > svg:nth-child(1) > path:nth-child(1){
+    fill: #8898af;
+    padding: 10px;
+    border-radius: 10px;
+}
 #qr-container.show{
     transform: scale(1);
 }
@@ -29,6 +41,9 @@ body{
 #app{
     height: 100%
 }
+
+/* Shitton of animation stuff below */
+
 #flip {
     height: 100vh; /* Make #flip fill the entire viewport height */
     display: flex; /* Use flexbox to center content */
@@ -37,14 +52,27 @@ body{
     transition: transform 0.3s ease-in-out; /* Smooth rotation */
 }
 
+.drop-in {
+    transform: translateY(-50%);
+    opacity: 0;
+    transition: transform 0.6s cubic-bezier(0.5, 1.5, 0.5, 1), opacity 0.6s ease; 
+}
+.drop-in.show {
+    transform: translateY(0); /* Final position */
+    opacity: 1; /* Fully visible */
+}
+
+
+/* Hand emoji */
 /* Wave Animation */
 .wave-animation {
     display: inline-block; /* Ensure proper inline-block behavior */
-    animation: wave 2s linear; /* Start animation */
+    animation: fadeIn .2s ease-in, wave 2s ease-in-out; /* Start animation */
 }
 
 @keyframes wave {
     0%, 100% {
+    
         transform: rotate(0deg); /* Initial and final position */
     }
     25% {
@@ -58,6 +86,19 @@ body{
     }
 }
 
+@keyframes fadeIn {
+    0% {
+        opacity: 0; /* Fully transparent */
+    }
+    100% {
+        opacity: 1; /* Fully opaque */
+    }
+}
+
+/* Profile image */
+.slide-in{
+    animation: slide-in 0.5s ease forwards;
+}
 
 @keyframes slide-in {
     0% {
@@ -69,3 +110,18 @@ body{
         opacity: 1; /* Fully opaque */
     }
 }
+
+/* sequence 2 fadeout */
+.fade-out {
+    animation: fadeOut 0.5s ease-in-out forwards; /* Use the fadeOut animation */
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 1; /* Fully visible */
+    }
+    100% {
+        opacity: 0; /* Fully transparent */
+    }
+}
+
