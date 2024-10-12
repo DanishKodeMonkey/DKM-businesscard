@@ -2,3 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
+
+.rotate-180 {
+    transform: rotate(180deg);
+}
+
+
+
+#flip {
+    height: 100vh; /* Make #flip fill the entire viewport height */
+    display: flex; /* Use flexbox to center content */
+    flex-direction: column; /* Stack children vertically */
+    align-items: center; /* Center children horizontally */
+    transition: transform 0.3s ease-in-out; /* Smooth rotation */
+}
