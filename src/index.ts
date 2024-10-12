@@ -191,7 +191,9 @@ async function endAnimation() {
     }, 10);
 
     console.log('Step 10');
-    await generateQRCode('http://localhost:9000');
+    await generateQRCode(
+        'https://danishkodemonkey.github.io/DKM-businesscard/'
+    );
 
     qrContainer.style.transform = 'scale(1)';
 
