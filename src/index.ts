@@ -1,6 +1,7 @@
 import './styles/tailwind.css';
 import generateQRCode from './components/QRCodeComponent';
 import typeWriter from './components/typeWriter';
+import Icon from './assets/121358075.jpg';
 
 async function animationStart() {
     console.log('SEQUENCE 1 START');
@@ -14,16 +15,17 @@ async function animationStart() {
     seqContainer.id = 'seqContainer';
 
     const h1 = document.createElement('h1');
-    h1.className = 'text-2xl font-bold my-4';
+    h1.textContent = 'Hello there!';
+    h1.className = 'text-2xl font-bold my-4 drop-in';
 
     const h2 = document.createElement('h2');
     h2.className = 'text-xl font-bold my-4';
 
-    const profileImage = document.createElement('img');
-    profileImage.src = './assets/121358075.jpg';
-    profileImage.alt = 'Picture of Daniel';
+    const profileImage = new Image();
+    profileImage.id = 'profile-image';
+    profileImage.src = Icon;
     profileImage.className =
-        'w-32 h-32 rounded-full border-4 border-gray-800 shadow-lg slide-in';
+        'w-28 h-28 rounded-full border-4 border-gray-800 shadow-lg';
 
     const h3 = document.createElement('h3');
     h3.className = 'text-lg font-bold my-4';
@@ -44,26 +46,33 @@ async function animationStart() {
     const githubLink = document.createElement('a');
     githubLink.href = 'https://github.com/DanishKodeMonkey';
     githubLink.target = '_blank'; // Open in a new tab
-    githubLink.className = 'text-blue-500 underline cursor-pointer';
+    githubLink.className = 'text-blue-500  cursor-pointer';
 
     const linkedinLink = document.createElement('a');
     linkedinLink.href =
         'https://www.linkedin.com/in/daniel-ljung-runge-3ba014a1/';
     linkedinLink.target = '_blank';
-    linkedinLink.className = 'text-blue-500 underline cursor-pointer';
+    linkedinLink.className = 'text-blue-500 cursor-pointer';
 
     const emailLink = document.createElement('a');
     emailLink.href = 'mailto:Daniel_Runge_@hotmail.com';
-    emailLink.className = 'text-blue-500 underline cursor-pointer';
+    emailLink.className = 'text-blue-500  cursor-pointer';
 
-    // append typewriter element to app div
+    // append elements to app div
     contactContainer.append(p2, githubLink, linkedinLink, emailLink);
 
     if (app) {
         app.append(seqContainer, contactContainer);
     }
 
-    await typeWriter('Hello there!', h1, 10);
+    /* Start sequence of animations:  */
+
+    h1.offsetHeight;
+    h1.classList.add('show');
+
+    await new Promise((resolve) => {
+        h1.addEventListener('transitionend', resolve, { once: true });
+    });
 
     const waveEmoji = document.createElement('span');
     waveEmoji.textContent = `👋`;
@@ -72,6 +81,17 @@ async function animationStart() {
     h1.appendChild(waveEmoji);
 
     await typeWriter('My name is Daniel', h2, 10);
+
+    h2.appendChild(profileImage);
+
+    profileImage.offsetHeight;
+
+    profileImage.classList.add('slide-in');
+    await new Promise((resolve) => {
+        profileImage.addEventListener('animationend', resolve, { once: true });
+    });
+    console.log('Finished profileImage');
+
     await typeWriter('Full Stack Web Developer and danishKodeMonkey', h3, 8);
     await typeWriter(
         'Proficient in JavaScript, TypeScript, React, and Node.js and much more, with a passion for building exciting and efficient web applications',
@@ -128,8 +148,23 @@ async function endAnimation() {
 
     console.log('Step 7');
     if (seqContainer) {
-        seqContainer.innerHTML = '';
+        seqContainer.classList.add('fade-out');
+        await new Promise((resolve) => {
+            seqContainer.addEventListener(
+                'animationend',
+                () => {
+                    // clear content after fade-out
+                    seqContainer.innerHTML = '';
+                    seqContainer.classList.remove('fade-out');
+                    seqContainer.style.opacity = '100%';
+                    resolve(undefined);
+                },
+                { once: true }
+            );
+        });
     }
+
+    console.log('STEP 8');
 
     const qrText = document.createElement('p');
     qrText.className = 'text-md text-center my-4';
@@ -161,9 +196,7 @@ async function endAnimation() {
     qrContainer.style.transform = 'scale(1)';
 
     await new Promise((resolve) => {
-        console.log('Step 5');
         if (qrContainer) {
-            console.log('Step 6');
             qrContainer.addEventListener('transitionend', resolve, {
                 once: true,
             });
