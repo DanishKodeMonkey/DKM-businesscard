@@ -2,17 +2,70 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
+
+body{
+    @apply bg-gray-900 text-white font-sans;
+}
 .rotate-180 {
     transform: rotate(180deg);
 }
 
 
+#contact-container{
+    transition: all 1s cubic-bezier(0.64, 0.57, 0.67, 1.53);
+}
 
+#qr-container{
+    transform: scale(0);
+    transition: all 1s cubic-bezier(0.64, 0.57, 0.67, 1.53);
+}
+
+#qr-container.show{
+    transform: scale(1);
+}
+
+#app{
+    height: 100%
+}
 #flip {
     height: 100vh; /* Make #flip fill the entire viewport height */
     display: flex; /* Use flexbox to center content */
     flex-direction: column; /* Stack children vertically */
     align-items: center; /* Center children horizontally */
     transition: transform 0.3s ease-in-out; /* Smooth rotation */
+}
+
+/* Wave Animation */
+.wave-animation {
+    display: inline-block; /* Ensure proper inline-block behavior */
+    animation: wave 2s linear; /* Start animation */
+}
+
+@keyframes wave {
+    0%, 100% {
+        transform: rotate(0deg); /* Initial and final position */
+    }
+    25% {
+        transform: rotate(20deg); /* Rotate slightly */
+    }
+    50% {
+        transform: rotate(-40deg); /* Rotate back */
+    }
+    75% {
+        transform: rotate(5deg); /* Rotate again */
+    }
+}
+
+
+@keyframes slide-in {
+    0% {
+        transform: translateX(100%); /* Start off-screen to the right */
+        opacity: 0; /* Fully transparent */
+    }
+    100% {
+        transform: translateX(0); /* End at normal position */
+        opacity: 1; /* Fully opaque */
+    }
 }
