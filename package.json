@@ -1,0 +1,38 @@
+{
+  "name": "dkm-business-card",
+  "version": "0.0.1",
+  "description": "A personal business card static site ",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack serve --mode development",
+    "build": "webpack --mode production"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DanishKodeMonkey/DKM-business-card.git"
+  },
+  "keywords": [
+    "business",
+    "card",
+    "danishKodeMonkey"
+  ],
+  "author": "Daniel Ljung Runge",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DanishKodeMonkey/DKM-business-card/issues"
+  },
+  "homepage": "https://github.com/DanishKodeMonkey/DKM-business-card#readme",
+  "devDependencies": {
+    "autoprefixer": "^10.4.20",
+    "css-loader": "^7.1.2",
+    "file-loader": "^6.2.0",
+    "postcss-loader": "^8.1.1",
+    "style-loader": "^4.0.0",
+    "tailwindcss": "^3.4.13",
+    "ts-loader": "^9.5.1",
+    "typescript": "^5.6.3",
+    "webpack": "^5.95.0",
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^5.1.0"
+  }
+}
