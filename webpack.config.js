@@ -1,17 +1,19 @@
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     entry: './src/index.ts',
     output: {
         filename: 'index.js',
         path: path.resolve(__dirname, 'dist'),
+        clean: true,
     },
     module: {
         rules: [
             {
                 test: /\.ts$/,
                 use: 'ts-loader',
-                exclude: '/node_modules/',
+                exclude: /node_modules/, // Remove quotes around node_modules
             },
             {
                 test: /\.css$/,
@@ -23,12 +25,19 @@ module.exports = {
             },
         ],
     },
+
     resolve: {
         extensions: ['.ts', '.js'],
     },
-    devServer:{
-        contentBase: path.join(__dirname, 'dist')
+    plugins: [
+        new HtmlWebpackPlugin({
+            template: './src/index.html',
+            filename: 'index.html',
+        }),
+    ],
+    devServer: {
+        static: path.join(__dirname, 'dist'),
         compress: true,
-        port: 9000
-    }
+        port: 9000,
+    },
 };
