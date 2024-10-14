@@ -25,8 +25,7 @@ export default async function animationStart() {
     const profileImage = new Image();
     profileImage.id = 'profile-image';
     profileImage.src = Icon;
-    profileImage.className =
-        'w-28 h-28 rounded-full border-4 border-gray-800 shadow-lg';
+    profileImage.className = 'w-28 h-28 rounded-full border-2 border-gray-300';
 
     const h3 = document.createElement('h3');
 
@@ -112,7 +111,7 @@ export default async function animationStart() {
 
     h1.appendChild(waveEmoji);
 
-    await typeWriter('My name is Daniel', h2, 10);
+    await typeWriter('My name is Daniel', h2, 2);
 
     h2.appendChild(profileImage);
 
@@ -122,9 +121,11 @@ export default async function animationStart() {
     await new Promise((resolve) => {
         profileImage.addEventListener('animationend', resolve, { once: true });
     });
+    profileImage.classList.remove('slide-in-left');
+    profileImage.classList.add('pulse-glow');
     console.log('Finished profileImage');
 
-    await typeWriter('Full Stack Web Developer and danishKodeMonkey', h3, 8);
+    await typeWriter('Full Stack Web Developer and danishKodeMonkey', h3, 2);
     await typeWriter(
         'Proficient in JavaScript, TypeScript, React, and Node.js and much more, with a passion for building exciting and efficient web applications',
         p1,

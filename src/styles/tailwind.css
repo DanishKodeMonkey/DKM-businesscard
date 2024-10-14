@@ -2,55 +2,91 @@
 @tailwind components;
 @tailwind utilities;
 
+
+/* Custom tailwind component */
+@layer components{
+    .animate-rotate{
+        animation: rotate 5s infinite
+    }
+}
+
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
 
+/* Main body */
 body{
     @apply bg-gray-900 text-white font-sans;
-}
-.rotate-180 {
-    transform: rotate(180deg);
-}
-
-#profile-image{
-    position: absolute;
-    top: 3vh;
-    left: 65vw;
-    transform: translateX(100%);
-    transition: all 0.5s ease-in-out;
-}
-
-#contact-container{
-    transition: all 1s cubic-bezier(0.64, 0.57, 0.67, 1.53);
-}
-
-#qr-container{
-    @apply mx-auto;
-    width: 80%;
-    transform: scale(0);
-    transition: all 1s cubic-bezier(0.64, 0.57, 0.67, 1.53);
-}
-#qr-container > svg:nth-child(1) > path:nth-child(1){
-    fill: #e4eefc;
-    padding: 10px;
-    border-radius: 10px;
-}
-#qr-container.show{
-    transform: scale(1);
 }
 
 #app{
     height: 100%
 }
 
+.rotate-180 {
+    transform: rotate(180deg);
+}
+
+/* Images and icons */
+#profile-image{
+    position: absolute;
+    top: 3vh;
+    left: 65vw;
+    transform: translateX(10%);
+    transition: all 0.5s ease-in-out;
+}
+
+.icon-div{
+    @apply flex
+}
+
+.contact-icon{
+
+    @apply w-10 h-10 shadow-md;
+    transform:translateX(-150%);
+    transition: all 0.5 ease-in-out;
+}
+
+.contact-link{
+    @apply text-blue-500  cursor-pointer p-2
+}
+
+
+/* Containers and QR */
+
+#contact-container{
+    transition: all .7s cubic-bezier(0.64, 0.57, 0.67, 1.53);
+}
+
+#qr-container{
+    @apply mx-auto relative -z-10 w-full bg-slate-900 rounded-xl;
+    transform: scale(0);
+    transition: all .5s cubic-bezier(0.64, 0.57, 0.67, 1.53);
+}
+#qr-container.show{
+    transform: scale(1);
+}
+
+/* SVG  */
+#qr-container > svg:nth-child(1){
+    border-radius: 10px;
+}
+#qr-container > svg:nth-child(1) > path:nth-child(1){
+    fill: #e4eefc70;
+}
+
+
+
+
+
 /* Shitton of animation stuff below */
 
+
 #flip {
-    height: 100vh; /* Make #flip fill the entire viewport height */
-    display: flex; /* Use flexbox to center content */
-    flex-direction: column; /* Stack children vertically */
-    align-items: center; /* Center children horizontally */
-    transition: transform 0.3s ease-in-out; /* Smooth rotation */
+    height: 100vh; 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    transition: transform 0.3s ease-in-out; 
 }
 
 .drop-in {
@@ -68,7 +104,7 @@ body{
 /* Wave Animation */
 .wave-animation {
     display: inline-block; /* Ensure proper inline-block behavior */
-    animation: fadeIn .2s ease-in, wave 2s ease-in-out; /* Start animation */
+    animation: fadeIn .2s ease-in, wave 2s infinite; /* Start animation */
 }
 
 @keyframes wave {
@@ -97,13 +133,29 @@ body{
 }
 
 /* Profile image */
-.slide-in{
-    animation: slide-in 0.5s ease forwards;
+.slide-in-left{
+    animation: slide-in-left 0.5s ease forwards;
 }
 
-@keyframes slide-in {
+@keyframes slide-in-left {
     0% {
-        transform: translateX(100%); /* Start off-screen to the right */
+        transform: translateX(150%); /* Start off-screen to the right */
+        opacity: 0; /* Fully transparent */
+    }
+    100% {
+        transform: translateX(0); /* End at normal position */
+        opacity: 1; /* Fully opaque */
+    }
+}
+
+/* Profile image */
+.slide-in-right{
+    animation: slide-in-right 0.5s ease forwards;
+}
+
+@keyframes slide-in-right {
+    0% {
+        transform: translateX(-100%); /* Start off-screen to the left */
         opacity: 0; /* Fully transparent */
     }
     100% {
@@ -123,6 +175,46 @@ body{
     }
     100% {
         opacity: 0; /* Fully transparent */
+    }
+}
+
+.glow-container.start{
+    @apply mx-auto flex w-full max-w-lg items-center justify-center
+}
+
+.outer-glow.start{
+    @apply relative z-10 flex w-full cursor-pointer items-center overflow-hidden rounded-xl border border-slate-800 p-[2px]
+
+}
+
+
+.animate-glow.start{
+    @apply animate-rotate absolute inset-0 h-full w-full rounded-full bg-[conic-gradient(#E2F5FF_20deg,transparent_120deg)]
+}
+
+.inner-glow.start{
+    @apply relative z-20 flex w-full rounded-[0.60rem] bg-slate-900;
+}
+
+@keyframes rotate{
+    0%{
+        transform: rotate(0deg) scale(10);
+    }
+    100%{
+        transform: rotate(-360deg) scale(10);
+    }
+}
+
+.pulse-glow {
+    animation: pulse-glow 2s infinite; /* adjust duration as needed */
+}
+
+@keyframes pulse-glow {
+    0%, 100% {
+        box-shadow: 0 0 0 rgba(226, 245, 255, 0.7); /* initial and final state */
+    }
+    50% {
+        box-shadow: 0 0 10px rgba(226, 245, 255, 1); /* pulsing effect */
     }
 }
 
