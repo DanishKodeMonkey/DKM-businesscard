@@ -4,28 +4,24 @@ import typeWriter from '../components/typeWriter';
 export default async function endAnimation() {
     console.log('SEQUENCE 2 START');
 
-    const seqContainer = document.getElementById('seqContainer');
+    const seqContainer = document.getElementById('seq-container');
 
     const contactContainer = document.getElementById('contact-container');
 
     contactContainer?.classList.add('move-down');
+    console.log(' STEP 1');
 
     // wait for contact containers transition to complete
     await new Promise((resolve) => {
         if (contactContainer) {
-            contactContainer.addEventListener(
-                'animationend',
-                () => {
-                    contactContainer.style.position = 'absolute';
-                    contactContainer.style.top = '47vh';
-                    resolve(undefined);
-                },
-                { once: true }
-            );
+            contactContainer.addEventListener('animationend', resolve);
         }
     });
+    console.log('STEP 2');
 
     if (seqContainer) {
+        console.log('HIT');
+
         seqContainer.classList.add('fade-out');
         await new Promise((resolve) => {
             seqContainer.addEventListener(
@@ -41,11 +37,13 @@ export default async function endAnimation() {
             );
         });
     }
+    console.log('STEP 3');
 
     const qrText = document.createElement('p');
     qrText.className = 'text-lg text-center my-4';
 
     seqContainer?.append(qrText);
+    console.log('STEP 4');
 
     await typeWriter('Have a businesscard!', qrText, 2);
     const glowContainer = document.createElement('div');
@@ -62,6 +60,7 @@ export default async function endAnimation() {
 
     const qrContainer = document.createElement('div');
     qrContainer.id = 'qr-container';
+    console.log('STEP 4');
 
     innerGlowDiv.appendChild(qrContainer);
     outerGlowDiv.appendChild(animateDiv);
@@ -71,6 +70,7 @@ export default async function endAnimation() {
     seqContainer?.append(glowContainer);
 
     qrContainer.offsetHeight;
+    console.log('STEP 5');
 
     setTimeout(() => {
         qrContainer.classList.add('show');
@@ -81,6 +81,7 @@ export default async function endAnimation() {
     );
 
     qrContainer.style.transform = 'scale(1)';
+    console.log('STEP 6');
 
     await new Promise((resolve) => {
         if (qrContainer) {

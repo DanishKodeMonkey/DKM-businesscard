@@ -12,8 +12,12 @@ export default async function animationStart() {
 
     // generate div element for the typewriter effect
 
+    /* superContainer maintains 50 percent of screen to prevent flex siblings falling around */
+    const superContainer = document.createElement('div');
+    superContainer.style.height = '50%';
+
     const seqContainer = document.createElement('div');
-    seqContainer.id = 'seqContainer';
+    seqContainer.id = 'seq-container';
 
     const h1 = document.createElement('h1');
     h1.textContent = 'Hello there!';
@@ -91,9 +95,10 @@ export default async function animationStart() {
 
     // append elements to app div
     contactContainer.append(p2, gitHubDiv, linkedInDiv, emailDiv);
+    superContainer.append(seqContainer);
 
     if (app) {
-        app.append(seqContainer, contactContainer);
+        app.append(contactContainer, superContainer);
     }
 
     /* Start sequence of animations:  */

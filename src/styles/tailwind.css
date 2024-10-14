@@ -53,6 +53,7 @@ body{
 /* Containers and QR */
 
 #contact-container{
+    @apply mb-auto;
     position: relative;
     transition: all .7s cubic-bezier(0.64, 0.57, 0.67, 1.53);
 }
