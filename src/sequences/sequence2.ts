@@ -17,7 +17,7 @@ export default async function endAnimation() {
                 'animationend',
                 () => {
                     contactContainer.style.position = 'absolute';
-                    contactContainer.style.transform = 'translateY(15vh)';
+                    contactContainer.style.top = '47vh';
                     resolve(undefined);
                 },
                 { once: true }

@@ -53,6 +53,7 @@ body{
 /* Containers and QR */
 
 #contact-container{
+    position: relative;
     transition: all .7s cubic-bezier(0.64, 0.57, 0.67, 1.53);
 }
 
@@ -165,16 +166,16 @@ body{
 
 .move-down {
     animation: move-down 1s forwards cubic-bezier(0.4, 0, 0.2, 1); 
-    position: absolute;
+
 }
 
 @keyframes move-down {
     0% {
-        transform: translateY(44vh); 
+        transform: translateY(0); 
     }
 
     100% {
-        transform: translateY(60vh);
+        transform: translateY(20vh);
 
     }
 }
