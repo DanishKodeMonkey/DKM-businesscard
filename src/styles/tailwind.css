@@ -164,6 +164,24 @@ body{
     }
 }
 
+.move-down {
+    animation: move-down 0.5s forwards ease-in-out; /* Adjust duration as needed */
+    transition: transform 0.5s ease-in-out;
+    position: absolute;
+}
+
+@keyframes move-down {
+    0% {
+        transform: translateY(45vh); /* Starting position */
+
+    }
+    100% {
+        transform: translateY(60vh); /* Final position */
+    }
+}
+
+
+
 /* sequence 2 fadeout */
 .fade-out {
     animation: fadeOut 0.5s ease-in-out forwards; /* Use the fadeOut animation */
@@ -189,7 +207,7 @@ body{
 
 
 .animate-glow.start{
-    @apply animate-rotate absolute inset-0 h-full w-full rounded-full bg-[conic-gradient(#E2F5FF_20deg,transparent_120deg)]
+    @apply animate-rotate absolute inset-0 h-full w-full rounded-full bg-[conic-gradient(#E2F5FF_20deg,transparent_120deg)] 
 }
 
 .inner-glow.start{

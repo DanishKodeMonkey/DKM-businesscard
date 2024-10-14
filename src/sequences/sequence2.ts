@@ -8,24 +8,16 @@ export default async function endAnimation() {
 
     const contactContainer = document.getElementById('contact-container');
 
-    contactContainer?.classList.add(
-        'transition-transform',
-        'duration-500',
-        'ease-in-out'
-    );
-
-    if (contactContainer) {
-        contactContainer.style.transform = 'translateY(15vh)';
-    }
+    contactContainer?.classList.add('move-down');
 
     // wait for contact containers transition to complete
     await new Promise((resolve) => {
         if (contactContainer) {
             contactContainer.addEventListener(
-                'transitionend',
+                'animationend',
                 () => {
                     contactContainer.style.position = 'absolute';
-                    contactContainer.style.top = '48vh';
+                    contactContainer.style.transform = 'translateY(15vh)';
                     resolve(undefined);
                 },
                 { once: true }
