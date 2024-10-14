@@ -1,4 +1,7 @@
 import Icon from '../assets/121358075.jpg';
+import Github from '../assets/github.svg';
+import LinkedIn from '../assets/linkedin.svg';
+import Mail from '../assets/mail.svg';
 import typeWriter from '../components/typeWriter';
 
 export default async function animationStart() {
@@ -42,23 +45,53 @@ export default async function animationStart() {
     const p2 = document.createElement('p');
     p2.className = 'text-md italic my-4';
 
+    const gitHubDiv = document.createElement('div');
+    gitHubDiv.classList.add('icon-div');
+
+    const gitHubLogo = new Image();
+    gitHubLogo.id = 'github-icon';
+    gitHubLogo.src = Github;
+    gitHubLogo.className = 'contact-icon';
+
     const githubLink = document.createElement('a');
     githubLink.href = 'https://github.com/DanishKodeMonkey';
     githubLink.target = '_blank'; // Open in a new tab
-    githubLink.className = 'text-blue-500  cursor-pointer';
+    githubLink.className = 'contact-link';
+
+    gitHubDiv.append(gitHubLogo, githubLink);
+
+    const linkedInDiv = document.createElement('div');
+    linkedInDiv.classList.add('icon-div');
+
+    const linkedInLogo = new Image();
+    linkedInLogo.id = 'linkedin-icon';
+    linkedInLogo.src = LinkedIn;
+    linkedInLogo.className = 'contact-icon';
 
     const linkedinLink = document.createElement('a');
     linkedinLink.href =
         'https://www.linkedin.com/in/daniel-ljung-runge-3ba014a1/';
     linkedinLink.target = '_blank';
-    linkedinLink.className = 'text-blue-500 cursor-pointer';
+    linkedinLink.className = 'contact-link';
+
+    linkedInDiv.append(linkedInLogo, linkedinLink);
+
+    const emailDiv = document.createElement('div');
+    emailDiv.classList.add('icon-div');
+
+    const emailLogo = new Image();
+    emailLogo.id = 'email-icon';
+    emailLogo.src = Mail;
+    emailLogo.className = 'contact-icon';
 
     const emailLink = document.createElement('a');
     emailLink.href = 'mailto:Daniel_Runge_@hotmail.com';
-    emailLink.className = 'text-blue-500  cursor-pointer';
+    emailLink.className = 'contact-link';
+
+    emailDiv.append(emailLogo, emailLink);
 
     // append elements to app div
-    contactContainer.append(p2, githubLink, linkedinLink, emailLink);
+    contactContainer.append(p2, gitHubDiv, linkedInDiv, emailDiv);
 
     if (app) {
         app.append(seqContainer, contactContainer);
@@ -85,7 +118,7 @@ export default async function animationStart() {
 
     profileImage.offsetHeight;
 
-    profileImage.classList.add('slide-in');
+    profileImage.classList.add('slide-in-left');
     await new Promise((resolve) => {
         profileImage.addEventListener('animationend', resolve, { once: true });
     });
@@ -100,9 +133,27 @@ export default async function animationStart() {
 
     await typeWriter('You can find me at:', p2, 2);
 
-    await typeWriter('Github: danishKodeMonkey', githubLink, 1);
-    await typeWriter('LinkedIn: Daniel Ljung Runge', linkedinLink, 1);
-    await typeWriter('Email: Daniel_Runge_@hotmail.com', emailLink, 1);
+    gitHubLogo.classList.add('slide-in-right');
+    await new Promise((resolve) => {
+        gitHubLogo.addEventListener('animationend', resolve, { once: true });
+    });
+    console.log('Finished gitHubLogo');
+
+    linkedInLogo.classList.add('slide-in-right');
+    await new Promise((resolve) => {
+        linkedInLogo.addEventListener('animationend', resolve, { once: true });
+    });
+    console.log('Finished linkedInLogo');
+
+    emailLogo.classList.add('slide-in-right');
+    await new Promise((resolve) => {
+        emailLogo.addEventListener('animationend', resolve, { once: true });
+    });
+    console.log('Finished emailLogo');
+
+    await typeWriter('danishKodeMonkey', githubLink, 1);
+    await typeWriter('Daniel Ljung Runge', linkedinLink, 1);
+    await typeWriter('Daniel_Runge_@hotmail.com', emailLink, 1);
 
     console.log('SEQUENCE 1 END');
     // send end signal to document
