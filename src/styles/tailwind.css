@@ -25,12 +25,13 @@ body{
 }
 
 #qr-container{
-
+    @apply mx-auto;
+    width: 80%;
     transform: scale(0);
     transition: all 1s cubic-bezier(0.64, 0.57, 0.67, 1.53);
 }
 #qr-container > svg:nth-child(1) > path:nth-child(1){
-    fill: #8898af;
+    fill: #e4eefc;
     padding: 10px;
     border-radius: 10px;
 }
