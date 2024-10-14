@@ -51,20 +51,32 @@ export default async function endAnimation() {
     }
 
     const qrText = document.createElement('p');
-    qrText.className = 'text-md text-center my-4';
+    qrText.className = 'text-lg text-center my-4';
 
     seqContainer?.append(qrText);
 
-    await typeWriter(
-        'Have a businesscard! Scan the QR for a link to this page!',
-        qrText,
-        2
-    );
+    await typeWriter('Have a businesscard!', qrText, 2);
+    const glowContainer = document.createElement('div');
+    glowContainer.className = 'glow-container';
+
+    const outerGlowDiv = document.createElement('div');
+    outerGlowDiv.className = 'outer-glow';
+
+    const animateDiv = document.createElement('div');
+    animateDiv.className = 'animate-glow';
+
+    const innerGlowDiv = document.createElement('div');
+    innerGlowDiv.className = 'inner-glow';
 
     const qrContainer = document.createElement('div');
     qrContainer.id = 'qr-container';
 
-    seqContainer?.append(qrContainer);
+    innerGlowDiv.appendChild(qrContainer);
+    outerGlowDiv.appendChild(animateDiv);
+    outerGlowDiv.appendChild(innerGlowDiv);
+    glowContainer.appendChild(outerGlowDiv);
+
+    seqContainer?.append(glowContainer);
 
     qrContainer.offsetHeight;
 
@@ -85,6 +97,10 @@ export default async function endAnimation() {
             });
         }
     });
+    glowContainer.classList.add('start');
+    outerGlowDiv.classList.add('start');
+    innerGlowDiv.classList.add('start');
+    animateDiv.classList.add('start');
 
     console.log('SEQUENCE 2 END');
     // send end signal to document
