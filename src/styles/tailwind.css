@@ -200,10 +200,10 @@ body{
 
 @keyframes fadeOut {
     0% {
-        opacity: 1; /* Fully visible */
+        opacity: 1; 
     }
     100% {
-        opacity: 0; /* Fully transparent */
+        opacity: 0; 
     }
 }
 
@@ -274,13 +274,13 @@ body{
     background-image: 
         linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
         linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-    background-size: 20px 20px; /* Adjust size for larger or smaller grid */
+    background-size: 20px 20px; 
     animation: grid-pulse 6s infinite ease-in-out;
     z-index: -1;
-    mix-blend-mode: screen; /* Makes grid blend with dot pulse */
+
 }
 
-#background div {
+#background div{
     filter: blur(8px);
     width: 20px;
     height: 20px;
@@ -290,13 +290,13 @@ body{
     margin: 0;
     width: 20px;
     height: 20px;
-    animation: dot-pulse 6s infinite ease-in-out;
+    animation: dot-pulse 6s infinite cubic-bezier(0.4, 0, 0.2, 1);;
     will-change: transform, opacity, box-shadow;
-    box-shadow: 0 0 15px 5px rgba(255, 255, 255, 0.9);
+    box-shadow: 0 0 15px 5px rgb(255, 255, 255);
 }
 
 #background div.glow-out{
-    animation: glow-out .8s forwards ease-in;
+    animation: glow-out .4s forwards ease-in;
 }
 
 #background .pulse-three {
@@ -329,20 +329,13 @@ body{
 }
 @keyframes dot-pulse {
     0%, 100% {
-        transform: scale(1.5) rotate(0deg);
-        opacity: .5;
-        box-shadow: 0 0 30px 50px rgba(255, 255, 255, 1);
+
+        box-shadow: 0 0 100px 80px rgba(255, 255, 255, 0.6);
     }
-    25% {
-        opacity: 1;
-    }
+
     50% {
-        transform: scale(1) rotate(360deg);
-        box-shadow: 0 0 50px rgba(255, 255, 255, 0.5);
-        opacity: 0.7;
-    }
-    75% {
-        opacity: 0.4;
+        box-shadow: 0 0 80px rgba(255, 255, 255, 0.5);
+
     }
 }
 
@@ -351,12 +344,10 @@ body{
         transform: inherit;
         opacity: inherit;
     }
-    50%{
-        opacity: 0;
-    }
+
     100%{
-        transform: scale(80);
-        opacity: 0;
+        box-shadow: 0 0 300px 400px rgba(255, 255, 255, 0);
+
     }
     
 }
