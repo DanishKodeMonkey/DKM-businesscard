@@ -2,7 +2,7 @@ export function idleSequence() {
     const background = document.getElementById('background');
 
     const colors = ['pulse-two', 'pulse-three'];
-    const numPulses = 6;
+    const numPulses = 2;
 
     for (let i = 0; i < numPulses; i++) {
         const pulse = document.createElement('div');
