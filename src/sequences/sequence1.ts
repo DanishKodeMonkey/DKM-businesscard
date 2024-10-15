@@ -11,6 +11,11 @@ export default async function animationStart() {
 
     await startSequence();
 
+    const backgroundDivs = document.querySelectorAll('#background div');
+    backgroundDivs.forEach((div) => {
+        div.remove();
+    });
+
     const app = document.getElementById('app');
 
     // generate div element for the typewriter effect
