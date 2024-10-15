@@ -3,10 +3,13 @@ import Github from '../assets/github.svg';
 import LinkedIn from '../assets/linkedin.svg';
 import Mail from '../assets/mail.svg';
 import typeWriter from '../components/typeWriter';
+import { startSequence } from './idleSequence';
 
 export default async function animationStart() {
     console.log('SEQUENCE 1 START');
     document.removeEventListener('click', animationStart);
+
+    await startSequence();
 
     const app = document.getElementById('app');
 

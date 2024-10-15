@@ -15,7 +15,7 @@
 
 /* Main body */
 body{
-    @apply bg-gray-900 text-white font-sans;
+    @apply  text-white font-sans;
 }
 
 #app{
@@ -229,10 +229,127 @@ body{
 
 @keyframes pulse-glow {
     0%, 100% {
+        
         box-shadow: 0 0 0 rgba(226, 245, 255, 0.7); 
     }
-    50% {
+    50% { 
         box-shadow: 0 0 10px rgba(226, 245, 255, 1); 
     }
 }
 
+/* Background effects */
+
+#background{
+    @apply bg-gray-900;
+    z-index: -1000;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    overflow: hidden;
+
+}
+/* Grid effect */
+#background::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 300%;
+    height: 300%;
+    background-image: 
+        linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 20px 20px; /* Adjust size for larger or smaller grid */
+    animation: grid-pulse 6s infinite ease-in-out;
+
+    z-index: -1;
+    mix-blend-mode: screen; /* Makes grid blend with dot pulse */
+    filter: brightness(1.5);
+}
+#background div {
+    filter: blur(8px);
+    width: 20px;
+    height: 20px;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.7), transparent 70%);
+    position: absolute;
+    border-radius: 50%;
+    margin: 0;
+    width: 20px;
+    height: 20px;
+    animation: dot-pulse 6s infinite ease-in-out;
+
+    box-shadow: 0 0 15px 5px rgba(255, 255, 255, 0.3);
+}
+
+#background div.glow-out{
+    animation: glow-out .8s forwards ease-in;
+}
+
+#background .pulse-three {
+    background: radial-gradient(circle, rgba(178, 237, 255, 0.7), transparent 70%);
+    animation-delay: 1s;
+}
+
+#background .pulse-two {
+    background: radial-gradient(circle, rgb(227, 251, 255), transparent 70%);
+    animation-delay: 2s;
+}
+
+@keyframes grid-pulse {
+    0%, 100% {
+        opacity: 1;
+        filter: brightness(1.5);
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    }
+    25% {
+        opacity: 1;
+        filter: brightness(1);
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+    }
+    50% {
+        opacity: .7;
+        filter: brightness(1.2);
+        box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+    }
+    75% {
+        opacity: .5;
+        filter: brightness(1.1);
+        box-shadow: 0 0 60px rgba(255, 255, 255, 0.8);
+    }
+}
+@keyframes dot-pulse {
+    0%, 100% {
+        transform: scale(2) rotate(0deg);
+        opacity: .3;
+        box-shadow: 0 0 30px 10px rgba(255, 255, 255, 0.4);
+    }
+    25% {
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1) rotate(360deg);
+        box-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
+        opacity: 0.7;
+    }
+    75% {
+        opacity: 0.5;
+    }
+}
+
+@keyframes glow-out {
+    0%{
+        transform: inherit;
+        opacity: inherit;
+    }
+    50%{
+        opacity: 0;
+    }
+    100%{
+        transform: scale(80);
+        opacity: 0;
+    }
+    
+}
