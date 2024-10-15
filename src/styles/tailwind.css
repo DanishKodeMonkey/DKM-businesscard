@@ -6,7 +6,8 @@
 /* Custom tailwind component */
 @layer components{
     .animate-rotate{
-        animation: rotate 5s infinite
+        animation: rotate 5s infinite;
+        will-change: transform;
     }
 }
 
@@ -24,6 +25,7 @@ body{
 
 .rotate-180 {
     transform: rotate(180deg);
+    will-change: transform;
 }
 
 /* Images and icons */
@@ -44,6 +46,7 @@ body{
     @apply w-10 h-10 shadow-md;
     transform:translateX(-150%);
     transition: all 0.5 ease-in-out;
+    will-change: transform;
 }
 
 .contact-link{
@@ -56,12 +59,14 @@ body{
     @apply mb-auto;
     position: relative;
     transition: all .7s cubic-bezier(0.64, 0.57, 0.67, 1.53);
+    will-change: transform, opacity
 }
 
 #qr-container{
     @apply mx-auto relative -z-10 w-full bg-slate-900 rounded-xl;
     transform: scale(0);
     transition: all .5s cubic-bezier(0.64, 0.57, 0.67, 1.53);
+    will-change: transform;
 }
 #qr-container.show{
     transform: scale(1);
@@ -88,12 +93,14 @@ body{
     flex-direction: column; 
     align-items: center; 
     transition: transform 0.3s ease-in-out; 
+    will-change: transform;
 }
 
 .drop-in {
     transform: translateY(-50%);
     opacity: 0;
     transition: transform 0.6s cubic-bezier(0.5, 1.5, 0.5, 1), opacity 0.6s ease; 
+    will-change: transform, opacity;
 }
 .drop-in.show {
     transform: translateY(0); 
@@ -106,6 +113,7 @@ body{
 .wave-animation {
     display: inline-block; 
     animation: fadeIn .2s ease-in, wave 2s infinite; 
+    will-change: transform, opacity;
 }
 
 @keyframes wave {
@@ -136,6 +144,7 @@ body{
 /* Profile image */
 .slide-in-left{
     animation: slide-in-left 0.5s ease forwards;
+    will-change: transform, opacity;
 }
 
 @keyframes slide-in-left {
@@ -152,6 +161,7 @@ body{
 /* Profile image */
 .slide-in-right{
     animation: slide-in-right 0.5s ease forwards;
+    will-change: transform, opacity;
 }
 
 @keyframes slide-in-right {
@@ -167,7 +177,7 @@ body{
 
 .move-down {
     animation: move-down 1s forwards cubic-bezier(0.4, 0, 0.2, 1); 
-
+    will-change: transform;
 }
 
 @keyframes move-down {
@@ -185,6 +195,7 @@ body{
 /* sequence 2 fadeout */
 .fade-out {
     animation: fadeOut 0.5s ease-in-out forwards; 
+    will-change: opacity;
 }
 
 @keyframes fadeOut {
@@ -225,6 +236,7 @@ body{
 
 .pulse-glow {
     animation: pulse-glow 2s infinite; 
+    will-change: box-shadow;
 }
 
 @keyframes pulse-glow {
@@ -266,7 +278,6 @@ body{
     animation: grid-pulse 6s infinite ease-in-out;
     z-index: -1;
     mix-blend-mode: screen; /* Makes grid blend with dot pulse */
-    filter: brightness(1.5);
 }
 
 #background div {
@@ -280,7 +291,7 @@ body{
     width: 20px;
     height: 20px;
     animation: dot-pulse 6s infinite ease-in-out;
-
+    will-change: transform, opacity, box-shadow;
     box-shadow: 0 0 15px 5px rgba(255, 255, 255, 0.9);
 }
 
