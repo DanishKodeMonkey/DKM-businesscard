@@ -3,6 +3,7 @@ import Github from '../assets/github.svg';
 import LinkedIn from '../assets/linkedin.svg';
 import Mail from '../assets/mail.svg';
 import typeWriter from '../components/typeWriter';
+import techScroller from '../components/techScroller';
 import { startSequence } from './idleSequence';
 
 export default async function animationStart() {
@@ -43,10 +44,10 @@ export default async function animationStart() {
 
     h3.className = 'text-lg font-bold my-4';
 
-    const p1 = document.createElement('p');
-    p1.className = 'text-md  my-4';
+    const techScrollerDiv = document.createElement('div');
+    techScrollerDiv.id = 'tech-scroller';
 
-    seqContainer.append(h1, h2, h3, p1);
+    seqContainer.append(h1, h2, h3, techScrollerDiv);
 
     // contact information
     const contactContainer = document.createElement('div');
@@ -139,11 +140,16 @@ export default async function animationStart() {
     console.log('Finished profileImage');
 
     await typeWriter('Full Stack Web Developer and danishKodeMonkey', h3, 2);
-    await typeWriter(
-        'Proficient in JavaScript, TypeScript, React, and Node.js and much more, with a passion for building exciting and efficient web applications',
-        p1,
-        1
-    );
+
+    techScroller();
+    techScrollerDiv.classList.add('slide-in-left');
+
+    await new Promise((resolve) => {
+        techScrollerDiv.addEventListener('animationend', resolve, {
+            once: true,
+        });
+    });
+    console.log('Finished techscroller');
 
     await typeWriter('You can find me at:', p2, 2);
 

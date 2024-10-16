@@ -21,11 +21,9 @@ import viteIcon from '../assets/vite.svg';
 import webpackIcon from '../assets/webpack.svg';
 
 const techScroller = () => {
-    const seqContainer = document.getElementById('seq-container');
+    const techScroller = document.getElementById('tech-scroller');
     const techContainer = document.createElement('div');
     techContainer.id = 'tech-container';
-    techContainer.className = 'flex overflow-hidden my-4';
-    techContainer.style.whiteSpace = 'nowrap';
 
     const techStack = [
         { src: bootstrapIcon, alt: 'Bootstrap' },
@@ -50,9 +48,13 @@ const techScroller = () => {
         { src: viteIcon, alt: 'Vite' },
         { src: webpackIcon, alt: 'Webpack' },
     ];
-    techStack.forEach((tech) => {
+
+    const infTechStack = [...techStack, ...techStack];
+    infTechStack.forEach((tech) => {
         const techDiv = document.createElement('div');
         techDiv.id = tech.alt;
+        techDiv.className = 'tech-item';
+
         const techName = document.createElement('p');
         techName.textContent = tech.alt;
 
@@ -65,7 +67,7 @@ const techScroller = () => {
         techContainer.appendChild(techDiv);
     });
 
-    seqContainer?.appendChild(techContainer);
+    techScroller?.appendChild(techContainer);
 };
 
 export default techScroller;

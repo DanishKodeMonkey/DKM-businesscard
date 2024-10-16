@@ -81,10 +81,46 @@ body{
     fill: #e4eefc70;
 }
 
+/* Tech scroller */
+#techScrollerDiv{
+    @apply overflow-hidden;
+    transform: translateX(150%);
+}
+
+#tech-container{
+    @apply flex my-4 space-x-6 items-center ;
+    animation: scroll 20s linear infinite;
+    white-space: nowrap;
+    width: max-content;
+}
+
+#tech-container div>p{
+    @apply text-center text-sm font-medium ;
+    color: white;
+}
+
+.tech-item{
+    @apply flex flex-col items-center text-slate-100
+}
+
+.tech-icon {
+    @apply w-12 h-12 mb-2 
+}
+
+.tech-icon:hover{
+    @apply transform scale-125 transition-transform duration-200
+}
 
 
+@keyframes scroll{
+    0%{
+        transform: translateX(0%)
 
-
+    }
+    100%{
+        transform:translateX(-50%)
+    }
+}
 /* Shitton of animation stuff below */
 
 
@@ -375,3 +411,6 @@ body{
     }
     
 }
+
+
+
