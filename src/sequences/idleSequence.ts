@@ -2,7 +2,7 @@ export function idleSequence() {
     const background = document.getElementById('background');
 
     const colors = ['pulse-two', 'pulse-three'];
-    const numPulses = 1;
+    const numPulses = 4;
 
     for (let i = 0; i < numPulses; i++) {
         const pulse = document.createElement('div');
@@ -17,6 +17,7 @@ export async function startSequence() {
 
     if (pulses) {
         for (let pulse of pulses) {
+            pulse.classList.remove('pulse-two', 'pulse-three');
             pulse.classList.add('glow-out');
         }
     }
