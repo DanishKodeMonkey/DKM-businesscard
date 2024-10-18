@@ -23,7 +23,7 @@ export default async function animationStart() {
 
     /* superContainer maintains 50 percent of screen to prevent flex siblings falling around */
     const superContainer = document.createElement('div');
-    superContainer.style.height = '50%';
+    superContainer.style.height = '55%';
 
     const seqContainer = document.createElement('div');
     seqContainer.id = 'seq-container';
@@ -142,7 +142,7 @@ export default async function animationStart() {
     await typeWriter('Full Stack Web Developer and danishKodeMonkey', h3, 2);
 
     techScroller();
-    techScrollerDiv.classList.add('slide-in-left');
+    techScrollerDiv.classList.add('open');
 
     await new Promise((resolve) => {
         techScrollerDiv.addEventListener('animationend', resolve, {

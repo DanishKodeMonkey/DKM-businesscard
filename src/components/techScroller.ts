@@ -22,35 +22,70 @@ import webpackIcon from '../assets/webpack.svg';
 
 const techScroller = () => {
     const techScroller = document.getElementById('tech-scroller');
-    const techContainer = document.createElement('div');
-    techContainer.id = 'tech-container';
 
-    const techStack = [
+    const techTitle = document.createElement('span');
+    techTitle.textContent = 'Tech stack:';
+    techTitle.className = 'tech-scroll-title';
+
+    const langContainer = document.createElement('div');
+    langContainer.className = 'tech-container';
+    langContainer.id = 'lang-container';
+
+    const frameLibContainer = document.createElement('div');
+    frameLibContainer.className = 'tech-container';
+    frameLibContainer.id = 'frameLib-container';
+
+    const frameworksAndLibraries = [
         { src: bootstrapIcon, alt: 'Bootstrap' },
-        { src: css3Icon, alt: 'CSS3' },
-        { src: denoIcon, alt: 'Deno' },
         { src: dockerIcon, alt: 'Docker' },
         { src: expressIcon, alt: 'Express' },
         { src: flaskIcon, alt: 'Flask' },
         { src: gitIcon, alt: 'Git' },
-        { src: html5Icon, alt: 'HTML5' },
         { src: htmxIcon, alt: 'HTMX' },
-        { src: javascriptIcon, alt: 'JavaScript' },
         { src: mongodbIcon, alt: 'MongoDB' },
         { src: mongooseIcon, alt: 'Mongoose' },
-        { src: nodedotjsIcon, alt: 'Node.js' },
         { src: postgresqlIcon, alt: 'PostgreSQL' },
         { src: prismaIcon, alt: 'Prisma' },
-        { src: pythonIcon, alt: 'Python' },
         { src: reactIcon, alt: 'React' },
         { src: tailwindcssIcon, alt: 'Tailwind CSS' },
-        { src: typescriptIcon, alt: 'TypeScript' },
         { src: viteIcon, alt: 'Vite' },
         { src: webpackIcon, alt: 'Webpack' },
     ];
 
-    const infTechStack = [...techStack, ...techStack];
-    infTechStack.forEach((tech) => {
+    const languages = [
+        { src: css3Icon, alt: 'CSS3' },
+        { src: denoIcon, alt: 'Deno' },
+        { src: html5Icon, alt: 'HTML5' },
+        { src: javascriptIcon, alt: 'JavaScript' },
+        { src: nodedotjsIcon, alt: 'Node.js' }, // Moved to languages
+        { src: pythonIcon, alt: 'Python' },
+        { src: typescriptIcon, alt: 'TypeScript' },
+    ];
+
+    const infLanguageStack = [...languages, ...languages];
+
+    infLanguageStack.forEach((tech) => {
+        const langDiv = document.createElement('div');
+        langDiv.id = tech.alt;
+        langDiv.className = 'tech-item';
+
+        const langName = document.createElement('p');
+        langName.textContent = tech.alt;
+
+        const langIcon = new Image();
+        langIcon.src = tech.src;
+        langIcon.alt = tech.alt;
+        langIcon.className = 'tech-icon';
+
+        langDiv.append(langName, langIcon);
+        langContainer.appendChild(langDiv);
+    });
+
+    const infFrameLibStack = [
+        ...frameworksAndLibraries,
+        ...frameworksAndLibraries,
+    ];
+    infFrameLibStack.forEach((tech) => {
         const techDiv = document.createElement('div');
         techDiv.id = tech.alt;
         techDiv.className = 'tech-item';
@@ -64,10 +99,10 @@ const techScroller = () => {
         techIcon.className = 'tech-icon';
 
         techDiv.append(techName, techIcon);
-        techContainer.appendChild(techDiv);
+        frameLibContainer.appendChild(techDiv);
     });
 
-    techScroller?.appendChild(techContainer);
+    techScroller?.append(techTitle, langContainer, frameLibContainer);
 };
 
 export default techScroller;
