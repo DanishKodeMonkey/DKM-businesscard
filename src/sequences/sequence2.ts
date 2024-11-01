@@ -76,9 +76,7 @@ export default async function endAnimation() {
         qrContainer.classList.add('show');
     }, 10);
 
-    await generateQRCode(
-        'https://danishkodemonkey.github.io/DKM-businesscard/'
-    );
+    await generateQRCode('https://www.danielrunge.dk/');
 
     qrContainer.style.transform = 'scale(1)';
     console.log('STEP 6');
